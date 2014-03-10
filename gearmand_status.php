@@ -86,8 +86,13 @@ foreach($ip_workers as $ip => $proc) {
     foreach($proc as $id=>$w) {
 
         foreach($w["abilities"] as $a){
-
-            $workers[$w["ip"]]["abilities"][$a]++;
+            
+            if (isset($workers[$w["ip"]]["abilities"][$a])) {
+                $workers[$w["ip"]]["abilities"][$a]++;
+            } else {
+                $workers[$w["ip"]]["abilities"][$a] = 1;
+            }
+            
             $total_job_status[$a]["capable_workers"]++;
 
         }
